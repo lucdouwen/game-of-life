@@ -204,23 +204,6 @@
             <version>1.9.0</version>
             <scope>test</scope>
         </dependency>
-    <dependency>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>cobertura-maven-plugin</artifactId>
-        <version>2.7</version>
-        <scope>test</scope>
-        <exclusions>
-            <exclusion>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-classic</artifactId>
-            </exclusion>
-            <exclusion>
-                <artifactId>tools</artifactId>
-                <groupId>com.sun</groupId>
-            </exclusion>
-        </exclusions>
-      </dependency>
-
     </dependencies>
 
     <modules>
@@ -315,7 +298,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-site-plugin</artifactId>
-                        <version>3.6</version>
+                        <version>3.3</version>
                         <configuration>
                             <reportPlugins>
                                 <plugin>
@@ -351,17 +334,6 @@
                                         <ignoreIdentifiers>true</ignoreIdentifiers>
                                     </configuration>
                                 </plugin>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>cobertura-maven-plugin</artifactId>
-                        <version>2.7</version>
-                        <configuration>
-                            <formats>
-                                <format>html</format>
-                                <format>xml</format>
-                            </formats>
-                        </configuration>
-                    </plugin>
                                 <plugin>
                                     <groupId>org.codehaus.mojo</groupId>
                                     <artifactId>findbugs-maven-plugin</artifactId>
@@ -458,41 +430,6 @@
                                 <format>html</format>
                                 <format>xml</format>
                             </formats>
-                    <check>
-                        <!--<haltOnFailure>true</haltOnFailure>--><!-- optional -->
-                        <!-- Per-class thresholds -->
-                        <lineRate>60</lineRate>
-                        <branchRate>40</branchRate>
-                        <!-- Project-wide thresholds -->
-                        <totalLineRate>60</totalLineRate>
-                        <totalBranchRate>40</totalBranchRate>
-                    </check>
-                    <instrumentation>
-                        <ignoreTrivial>true</ignoreTrivial>
-                        <ignoreMethodAnnotation>com.cvent.codecoverage.CoverageIgnore</ignoreMethodAnnotation>
-                    </instrumentation>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>ch.qos.logback</groupId>
-                        <artifactId>logback-classic</artifactId>
-                        <version>1.1.2</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>ch.qos.logback</groupId>
-                        <artifactId>logback-core</artifactId>
-                        <version>1.1.2</version>
-                    </dependency>
-                </dependencies>
-                <executions>
-                    <execution>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>clean</goal>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
                         </configuration>
                     </plugin>
                     <plugin>
