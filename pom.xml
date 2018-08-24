@@ -204,18 +204,6 @@
             <version>1.9.0</version>
             <scope>test</scope>
         </dependency>
-                  <dependency>
-                           <groupId>net.sourceforge.cobertura</groupId>
-                           <artifactId>cobertura</artifactId>
-                           <version>2.1.1</version>
-                           <scope>test</scope>
-                           <exclusions>
-                                  <exclusion>
-                                        <groupId>ch.qos.logback</groupId>
-                                        <artifactId>logback-classic</artifactId>
-                                  </exclusion>
-                           </exclusions>
-                    </dependency>
     </dependencies>
 
     <modules>
@@ -442,6 +430,41 @@
                                 <format>html</format>
                                 <format>xml</format>
                             </formats>
+                    <check>
+                        <!--<haltOnFailure>true</haltOnFailure>--><!-- optional -->
+                        <!-- Per-class thresholds -->
+                        <lineRate>60</lineRate>
+                        <branchRate>40</branchRate>
+                        <!-- Project-wide thresholds -->
+                        <totalLineRate>60</totalLineRate>
+                        <totalBranchRate>40</totalBranchRate>
+                    </check>
+                    <instrumentation>
+                        <ignoreTrivial>true</ignoreTrivial>
+                        <ignoreMethodAnnotation>com.cvent.codecoverage.CoverageIgnore</ignoreMethodAnnotation>
+                    </instrumentation>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>ch.qos.logback</groupId>
+                        <artifactId>logback-classic</artifactId>
+                        <version>1.1.2</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>ch.qos.logback</groupId>
+                        <artifactId>logback-core</artifactId>
+                        <version>1.1.2</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>clean</goal>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
                         </configuration>
                     </plugin>
                     <plugin>
